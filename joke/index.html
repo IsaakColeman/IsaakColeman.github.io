@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Humour</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+h1 {
+  size=40px;
+  text-align: center;
+}
+
+p {
+  size: 24px;
+  text-align: center;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #555;
+  font-weight: bold;
+  color: black;
+  text-shadow:
+    4px 4px 7px #44b4ff,
+	4px -4px 7px #44b4ff,
+	-4px 4px 7px #44b4ff,
+	-4px -4px 7px #44b4ff;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 51px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 16px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+#main {
+  margin-top: 30px;
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a id="navB" style="cursor:pointer" onclick="toggleNav()">&#9776;</a>
+  <a href="../">Home</a>
+  <a href="../contact">Contact</a>
+  <a href="../projects">Projects</a>
+  <a href="../about">About</a>
+</div>
+
+<div id="mySidenav" class="sidenav">
+  <li><a href="https://github.com/IsaakColeman/kattisJavaSolutions" target="_blank">GitHub</a></li>
+  <a href="../about">About</a>
+  <a href="">"Funny"</a>
+</div>
+
+<div id="main">
+<br>
+<button onclick="togglePlay()">Play/Pause</button>
+<button onclick="toggleSize()">Size</button>
+<input id="volumeslider" type="range" min="0" max="100" value="15" step="1">
+<br><br>
+<video id="video1" width="640">
+  <source src="../images/vermintide.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</div>
+
+<script>
+let navOpen = false;
+var myVid = document.getElementById("video1");
+volumeslider.addEventListener("change",setvolume,false);
+myVid.volume = 0.15;
+
+function toggleNav() {
+  navOpen = !navOpen;
+  if (navOpen) {
+    document.getElementById("mySidenav").style.width = "200px";
+    document.getElementById("main").style.marginLeft = "200px";
+  } else {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+  document.getElementById("navB").classList.toggle("active");
+}
+
+function togglePlay() {
+  if(myVid.paused) {
+    myVid.play();
+  } else {
+    myVid.pause();
+  }
+}
+
+function toggleSize() {
+  if(myVid.width < 2160) {
+    myVid.width = myVid.width * 1.5;
+  } else {
+	myVid.width = 640;
+  }
+}
+
+function setvolume(){
+	myVid.volume = volumeslider.value / 100;
+}
+</script>
+   
+</body>
+</html> 
+
